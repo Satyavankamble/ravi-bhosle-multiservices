@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>रवी भोसले मलटीसर्विसेस </title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body{margin:0;padding:0;font-family:'Noto Sans Devanagari','Roboto',sans-serif; background:#F6F9FA;color:#252525;}
+    .topbar{background:#FFD54F; color:#4B0082; text-align:center;padding:4px;font-weight:700;}
+    .ribbon{background:#E8F5E9;border-bottom:1.5px solid #6B46C1;color:#388E3C;text-align:center;font-weight:600;padding:4px;font-size:.97rem;}
+    .sticky{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 16px #2C028220;border-bottom:2px solid #9C27B0;}
+    .header{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:auto;padding:8px 16px;}
+    .brand{display:flex;align-items:center;gap:13px;}
+    .brand img{width:42px;height:42px;border-radius:12px;box-shadow:0 0 0 3px #FFC107AA;animation:glow 2.2s infinite;}
+    @keyframes glow{0%,100%{box-shadow:0 0 0 3px #FFC107AA;}50%{box-shadow:0 0 9px #9C27B0,0 0 0 4px #FFC107;}}
+    .brand span{font-size:1.45rem;font-weight:700;letter-spacing:.3px;color:#212121;}
+    .partner{display:flex;gap:12px;align-items:center;}
+    .partner img{height:34px;border-radius:8px;background:#fff;padding:2px;}
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;margin-left:16px;}
+    .hamburger span{display:block;background:#9C27B0;height:4px;width:27px;border-radius:10px;}
+    .nav{margin-left:20px;}
+    .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+    .nav a{background:transparent;color:#4B0082;font-weight:600;font-size:1.11rem;padding:6px 16px;border-radius:15px;transition:0.16s;}
+    .nav a:hover,.nav a.active{background:#E9E3F4;color:#9C27B0;}
+    @media(max-width:900px){.header{flex-wrap:wrap;}.nav{margin:12px 0 0 0;}.nav ul{gap:12px;}}
+    @media(max-width:680px){
+      .brand span{font-size:1.1rem;}
+      .nav{display:none;position:absolute;top:62px;right:8px;background:#fff;box-shadow:0 9px 22px #2C028222;border-radius:11px;padding:15px;}
+      .nav.active{display:block;}
+      .nav ul{flex-direction:column;gap:18px;}
+      .partner img,.brand img{height:32px;}
+      .header{padding:8px 3px;position:relative;}
+      .section-title{font-size:1.05rem;}
+      .svc-card{padding:19px 8px;}
+      .hamburger{display:flex;}
+    }
+    @media(max-width:480px){
+      .main-title{font-size:1.1rem;}
+      .banner h1{font-size:1.3rem;}
+      .footer,.topbar{font-size:0.99rem;}
+      .container{padding:0 2px;}
+    }
+    .section{max-width:1150px;margin:auto;padding:35px 12px;}
+    .section-title{font-size:1.36rem;font-weight:700;color:#6B46C1;text-align:center;margin:35px 0 25px;}
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;}
+    .svc-card{
+      background:#fff;border-radius:19px;box-shadow:0 2px 18px #2c02821d;
+      display:flex;flex-direction:column;align-items:center; padding:25px 22px 23px 22px;
+      transition:box-shadow .17s,transform .16s; position:relative;}
+    .svc-card:hover{box-shadow:0 12px 36px #9C27B050;transform:scale(1.045);}
+    .svc-card .accent{position:absolute;left:16px;top:17px;width:13px;height:13px;border-radius:50%;background:#9C27B0;}
+    .svc-card:nth-child(2) .accent{background:#FFC107;}
+    .svc-card:nth-child(3) .accent{background:#4B0082;}
+    .svc-card img{width:42px;margin-bottom:13px;}
+    .svc-card h4{margin:0 0 5px;font-size:1.12rem;color:#9C27B0;font-weight:700;}
+    .svc-card p{font-size:.96rem;color:#333;margin:0 0 11px;}
+    .svc-card button{background:#FFC107;color:#6B46C1;border-radius:8px;padding:7px 22px;border:none;font-weight:600;cursor:pointer;margin-top:6px;}
+    .svc-card button:hover{background:#6B46C1;color:#FFC107;}
+    .contact{max-width:450px;margin:35px auto;background:#fff;padding:22px 21px;border-radius:13px;box-shadow:0 2px 17px #9c27b013;}
+    .contact h3{color:#9C27B0;text-align:center;}
+    .contact input,.contact textarea{width:100%;margin-bottom:11px;border-radius:8px;border:1px solid #bdbdbd;font-size:1rem;padding:10px;}
+    .contact button{padding:11px 18px;background:#9C27B0;color:#FFC107;font-weight:700;border:none;border-radius:9px;font-size:1.07rem;cursor:pointer;}
+    .contact button:hover{background:#4B0082;}
+    .footer{background:#22226D;color:#FFD54F;padding:16px;text-align:center;border-radius:8px 8px 0 0;margin-top:33px;}
+    #success-toast{display:none;position:fixed;bottom:35px;right:35px;z-index:999;
+            background:#6B46C1;color:#FFC107;padding:19px 28px;border-radius:12px;
+            font-size:1.13rem;font-weight:700;box-shadow:0 4px 30px #6B46C19c;}
+    .mapbox-footer{max-width:480px;margin:15px auto;}
+  </style>
+  <script>
+    function toggleNav(){document.getElementById('mainNav').classList.toggle('active');}
+    window.addEventListener('scroll',function(){
+      let sections=['home','services','about','contact'];
+      let navs=document.querySelectorAll('.nav a');
+      let x=window.scrollY+130;
+      for(let i=0;i<sections.length;i++){
+        let s=document.getElementById(sections[i]);
+        if(s&&x>=s.offsetTop){navs.forEach(a=>a.classList.remove('active'));
+          if(navs[i])navs[i].classList.add('active');
+        }
+      }
+    });
+    function showToast() {
+      var t=document.getElementById('success-toast');
+      t.style.display='block';
+      setTimeout(()=>{t.style.display='none';},2700);
+    }
+    // TO close Nav on link click in mobile:
+    document.addEventListener('DOMContentLoaded',function(){
+      document.querySelectorAll('.nav a').forEach(link=>{
+        link.addEventListener('click',()=>{document.getElementById('mainNav').classList.remove('active');});
+      });
+    });
+  </script>
+</head>
+<body>
+<!--div class="topbar">⚡️ सरकारी अधिकृत केंद्र | डिजिटल भारत | Open: 8am - 9pm</div>
+<div class="ribbon">🟢 अजूनही केंद्र सुरू आहे | Live Support उपलब्ध!</div-->
+<div class="sticky">
+  <div class="header">
+    <div class="brand">
+      <img src="logo.jpg"/>
+      <span>रवी भोसले मलटीसर्विसेस </span>
+    </div>
+    <div class="partner">
+      <img src="csc_logo.png"/>
+      <img src="DBT.png"/>
+     <img src="aadhaar_english_logo.svg"/>
+    </div>
+    <div class="hamburger" onclick="toggleNav()" aria-label="Toggle Navigation" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="nav" id="mainNav">
+      <ul>
+        <li><a href="#home" class="active">मुख्यपृष्ठ</a></li>
+        <li><a href="#services">सेवा</a></li>
+       <li><a href="#contact">संपर्क</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<div id="home" class="section" style="background:#F1F8E9;border-radius:18px;margin-top:20px;">
+  <h1 style="font-size:2.3rem;text-align:center;margin-bottom:17px;color:#212121;">रवी भोसले मलटीसर्विसेस </h1>
+  <p style="color:#4B0082;font-size:1.13rem;text-align:center;">आपले सरकार, CSC  — एकाच ठिकाणी, नागरिकांसाठी सर्व डिजिटल सेवांचे हब.</p>
+  <p style="color:#c61394;font-size:1.13rem;text-align:center;">आम्ही रवी भोसले मलटीसर्विसेस  मध्ये, नागरिकांसाठी सर्व सेवा डिजिटल व पारदर्शक पद्धतीने देतो. आधार, मतदार, प्रमाणपत्र, सरकारी योजना, बँकिंग, तक्रार — आधुनिक सुविधा, मोबाइलवरही सहज!.</p>
+  
+</div>
+<div id="services" class="section">
+  <div class="section-title">सर्व सेवा (Apply Now)</div>
+  <div class="svc-grid">
+    <div class="svc-grid">
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/passbook.png"/>
+    <h4>PF सुविधा केंद्र</h4>
+    <p>PF/EPF खाते सर्विसेस व माहिती</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_PF','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/id-card.png"/>
+    <h4>आधार दुसरी प्रत</h4>
+    <p>आधार कार्ड मिळवा व सुधारणा</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_ADHAR','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/pan-card.png"/>
+    <h4>पॅन कार्ड नवीन व दुसरी</h4>
+    <p>नवीन/दुरुस्ती/पुनर्मिलन</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_PAN','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/ballot.png"/>
+    <h4>मतदार नोंदणी व दुसरी प्रत</h4>
+    <p>मतदार कार्ड, दुरुस्ती व प्रिंट</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_VOTER','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/crm-gazette.png"/>
+    <h4>राजपत्र (Gazette)</h4>
+    <p>नाव, पत्ता, जन्मतारीख बदल</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_GAZETTE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/passport.png"/>
+    <h4>पासपोर्ट सेवा</h4>
+    <p>नवीन/नूतनीकरण/दुरुस्ती</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_PASSPORT','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/police-badge.png"/>
+    <h4>पोलीस व्हेरिफिकेशन</h4>
+    <p>पोलिस/वाहन खाते सर्विसेस</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_POLICE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/baby-female.png"/>
+    <h4>सुकन्या समृद्धी योजना</h4>
+    <p>महिला/बाल सेवा</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SUKANYA','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/home.png"/>
+    <h4>रहिवासी प्रमाणपत्र</h4>
+    <p>डोमिसाईल/बदल/दुरुस्ती</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_DOMICILE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/women-skin-type-5.png"/>
+    <h4>महिला/SEBC/GAP सर्टिफिकेट</h4>
+    <p>आरक्षण प्रमाणपत्र</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SEBC','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/life-cycle.png"/>
+    <h4>जीवन प्रमाणपत्र</h4>
+    <p>पेंशनर्ससाठी डिजिटल फॉर्म</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_LIFECERT','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/driving.png"/>
+    <h4>ड्रायव्हिंग लायसन्स</h4>
+    <p>नवीन/सुधारणा/पुनर्नूतनीकरण</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_DL','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/food-bar.png"/>
+    <h4>फूड लायसन्स</h4>
+    <p>खाद्य सुरक्षा व फुड लायसन्स</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_FOOD','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/disability.png"/>
+    <h4>UDID कार्ड</h4>
+    <p>अपंग दाखला सेवा</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_UDID','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/bank-cards.png"/>
+    <h4>बँक खाते नवीन</h4>
+    <p>नवीन खाते सेवा/मदत</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_BANK','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/briefcase.png"/>
+    <h4>Employment Card</h4>
+    <p>रोजगार फॉर्म</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_EMPLOY','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/certificate.png"/>
+    <h4>स्पर्धा परीक्षा/भरती</h4>
+    <p>JEE/CET/NEET इ.</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_EXAM','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/school.png"/>
+    <h4>Admission/RTE फॉर्म</h4>
+    <p>शैक्षणिक अर्ज व प्रवेश</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_ADMISSION','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/apprenticeship.png"/>
+    <h4>NAPS/NATS Apprentice नोंदणी</h4>
+    <p>शासकीय अप्रेन्टिसशिप</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_APPRENTICE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/scholarship.png"/>
+    <h4>Maha-DBT शिष्यवृत्ती</h4>
+    <p>शासकीय अर्थसाहाय्य</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SCHOLARSHIP','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/property.png"/>
+    <h4>डिजिटल १२/३,७/१२</h4>
+    <p>फेरफार/मालमत्ता प्रमाणपत्र</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_712','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/scorecard.png"/>
+    <h4>CIBIL स्कोर</h4>
+    <p>क्रेडिट रिपोर्ट/फायनान्स</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_CIBIL','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/voting.png"/>
+    <h4>मतदार कार्ड दुरुस्ती/प्रिंट</h4>
+    <p>EPIC कार्ड सुधारणा</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_VOTERFIX','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/open-book--v2.png"/>
+    <h4>शिष्यवृत्ती नूतनीकरण</h4>
+    <p>Renewal व ट्रॅकिंग</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SCHOLRENEW','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/alarm.png"/>
+    <h4>शासकीय तक्रारी</h4>
+    <p>Complaint/Feedback</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_COMPLAINT','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/gst.png"/>
+    <h4>GST नोंदणी/फाइलिंग</h4>
+    <p>व्यापारी सर्विसेस</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_GST','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/signature.png"/>
+    <h4>डिजिटल सिग्नेचर</h4>
+    <p>Certificate/Verification</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SIGNATURE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/wedding.png"/>
+    <h4>विवाह नोंदणी</h4>
+    <p>Marriage Certificate</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_MARRIAGE','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/credit-card.png"/>
+    <h4>ATM कार्ड सेवा</h4>
+    <p>ATM अर्ज व ब्लॉक</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_ATM','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/high-risk.png"/>
+    <h4>सरकारी सबसीडी</h4>
+    <p>नवीन अर्ज</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SUBSIDY','_blank')">Apply Now</button>
+  </div>
+  <div class="svc-card">
+    <span class="accent"></span>
+    <img src="https://img.icons8.com/color/48/id-card.png"/>
+    <h4>स्मार्ट कार्ड</h4>
+    <p>प्रमाणपत्र डाउनलोड</p>
+    <button onclick="window.open('https://forms.gle/YOUR_FORM_SMARTCARD','_blank')">Apply Now</button>
+  </div>
+  <!-- इत्यादी, सर्व सेवा इथे अशा फॉर्मॅटमध्ये add करा! -->
+</div>
+
+    <!-- इथे मागील उत्तरातील सर्व svc-card पेस्ट करा -->
+    <!-- Complete services cards... -->
+  </div>
+</div>
+<!--div id="about" class="section" style="background:#fff2da;">
+  <div class="section-title">आमच्याबद्दल</div>
+  <p style="max-width:650px;text-align:center;margin:auto;color:#3D3547; font-size:1.09rem;">
+   
+  </p>
+</div-->
+<div id="contact" class="contact">
+  <h3>तुमच्याशी संपर्क साधा</h3>
+  <div style="margin:18px 0;text-align:center;">
+    <a href="https://wa.me/917083117206?text=नमस्कार,%20मला%20AJ%20संपर्क%20पाहिजे" target="_blank"
+       style="display:inline-flex;align-items:center;gap:7px;padding:10px 16px;background:#25D366;color:#fff;border-radius:9px;font-weight:600;text-decoration:none;font-size:1rem;">
+      <img src="https://img.icons8.com/color/48/whatsapp.png" style="width:22px;">
+      WhatsApp वर संपर्क करा
+    </a>
+  </div>
+</div>
+<div id="success-toast">तुमचा अर्ज यशस्वीपणे सबमिट झाला!</div>
+<div class="footer">
+  © 2025 रवी भोसले मलटीसर्विसेस . सर्व हक्क राखीव.<br>
+  पत्ता . लखनगाव ता . औसा, जि.लातूर   .<br>
+  संपर्क: 7083117206 
+  <div class="mapbox-footer">
+    <h4 style="margin:15px 0 8px 0;color:#FFC107;">केंद्राचा पत्ता (Google Map)</h4>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d679.493419430467!2d76.43901626946138!3d18.28369027232211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDE3JzAxLjMiTiA3NsKwMjYnMjIuOCJF!5e1!3m2!1sen!2sin!4v1761983252519!5m2!1sen!2sin" 
+    width="100%" height="180" style="border:0;border-radius:10px;" allowfullscreen=""
+     loading="lazy" ></iframe>
+  </div>
+</div>
+<a href="https://wa.me/917083117206?text=नमस्कार,%20मला%20माहिती%20हवी%20AJ%20महा%20ई-सेवा%20केंद्राबद्दल"
+   target="_blank"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;
+          background:#25D366;color:#fff;border-radius:40px;padding:13px 21px;
+          font-weight:700;font-size:1.18rem;text-decoration:none;box-shadow:0 4px 20px #25D36655;display:flex;align-items:center;gap:8px;">
+   <img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp" style="width:29px;height:29px;">
+   WhatsApp करा
+</a>
+</body>
+</html>
